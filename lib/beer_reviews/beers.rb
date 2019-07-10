@@ -1,12 +1,7 @@
-class BeerReviews::Beer 
+class BeerReviews::Beers 
     attr_accessor :name, :type, :brewery
     def self.all
-        puts <<-DOC.gsub /^\s*/, ''
-            1. Jammer - Sixpoint Brewery - Gose
-            2. Higher Burnin IPA - LIC Beer Project - American IPA
-            3. Better Selves - Able Seedhouse and Brewery - Specialty IPA
-        DOC
-
+        
         beer_1 = self.new
         beer_1.name = "Jammer"
         beer_1.type = "Gose"
