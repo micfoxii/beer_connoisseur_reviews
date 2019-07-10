@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Find your new favorite beer!"
+require_relative "../lib/beer_reviews"
+
+BeerReviews::CLI.new.call
