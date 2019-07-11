@@ -31,11 +31,5 @@ class BeerReviews::Beers
         [beer_1, beer_2, beer_3]
 
         #beers
-    end
-
-    # def self.scrape_beer_connoisseur
-    #     doc = Nokogiri::HTML(open("https://beerconnoisseur.com/search-beer"))
-    #     binding.pry
-    # end
-        
+    end        
 end

@@ -33,6 +33,10 @@ class BeerReviews::CLI
         end
     end
 
+    def beer_details
+
+    end
+
     def goodbye
         puts "See you next time and remember to drink responsibly!"
     end
