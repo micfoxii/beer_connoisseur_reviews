@@ -1,11 +1,11 @@
 class BeerReviews::CLI
     def call
         
-        list_beers
+        list_beer_name_brewery_type
         menu
     end
 
-    def list_beers
+    def list_beer_name_brewery_type
         puts 'Welcome, are you ready to find your new favorite beer?'
         
         @beers = BeerReviews::Beers.all
