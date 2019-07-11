@@ -1,5 +1,5 @@
 class BeerReviews::Beers 
-    attr_accessor :name, :type, :brewery
+    attr_accessor :name, :type, :brewery, :city, :country, :abv, :ibu, :hops, :malts, :description, :author, :review
     
     def self.all
         
