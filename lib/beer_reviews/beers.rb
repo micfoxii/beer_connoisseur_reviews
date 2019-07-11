@@ -30,7 +30,13 @@ class BeerReviews::Beers
         beer_3.brewery = "Able Seedhouse and Brewery"
 
         [beer_1, beer_2, beer_3]
+        #doc = Nokogiri::HTM(open("https://beerconnoisseur.com/search-beer"))
 
+        # name = doc.("div.views-field.views-field-title").css("span.field-content a").text
+        
+        # brewery = page.css("div.views-field.views-field-field-brewery").css("div.field-content a").text
+
+        # type = page.css("div.views-field.views-field-field-beer-style").css("div.field-content a").text
         #beers
     end        
 end

@@ -1,13 +1,11 @@
 class BeerReviews::CLI
     def call
-        
         list_beer_name_brewery_type
         menu
     end
 
     def list_beer_name_brewery_type
         puts 'Welcome, are you ready to find your new favorite beer?'
-        
         @beers = BeerReviews::Beers.all
         @beers.each.with_index(1) do |beer, i|
             puts "#{i}. #{beer.name} - #{beer.brewery} - #{beer.type}"
@@ -31,10 +29,6 @@ class BeerReviews::CLI
                 puts "Sorry, I do not understand. Please type list to return to beer list, or type exit to leave."
             end
         end
-    end
-
-    def beer_details
-
     end
 
     def goodbye
