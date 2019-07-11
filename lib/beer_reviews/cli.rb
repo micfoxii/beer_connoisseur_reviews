@@ -20,7 +20,7 @@ class BeerReviews::CLI
             puts "Please enter the number of the beer you would like to learn more about, or type exit to leave."
             input = gets.strip.downcase
 
-            if input.to_i > 0 
+            if input.to_i > 0 && input.to_i < @beers.length + 1
                 selected_beer = @beers[input.to_i-1]
                 puts " #{selected_beer.name} - #{selected_beer.brewery} - #{selected_beer.type}"
             elsif input == "list"
