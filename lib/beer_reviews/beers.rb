@@ -1,5 +1,6 @@
 class BeerReviews::Beers 
     attr_accessor :name, :type, :brewery
+    
     def self.all
         
         self.scrape_beers
@@ -10,7 +11,7 @@ class BeerReviews::Beers
         # beers << self.scrape_beers
 
         # Go to Beer Conneusoir
-        # Extract Properties (name, brewery, type, city, country, ABV, IBU, Hops, Malts, Description, Review Author, Review)
+        # Extract Properties (name, brewery, type)
         # instantiate beers
 
         beer_1 = self.new

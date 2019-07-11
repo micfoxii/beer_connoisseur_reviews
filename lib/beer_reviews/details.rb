@@ -1,4 +1,4 @@
 class BeerReviews:Details
-    attr_accessor :city, :country, :abv, :ibu, :hops, :malts, :description, :author, :review
-    
+    attr_accessor :name, :type, :brewery, :city, :country, :abv, :ibu, :hops, :malts, :description, :author, :review
+
 end
