@@ -1,19 +1,14 @@
 class BeerReviews::Scraper
 
-    def get_page
-        Nokogiri::HTML(open("https://www.beeradvocate.com/lists/top/"))
-    end
-
-    def scrape_beers
-        self.get_page.css(".hr_bottom_light[@align='left']")
-    end    
-    
-    def create_beers
-        scrape_beers.each do |b|
-            BeerReviews::Beers.beers_from_list(b)
+    def self.scrape_beers
+        doc = Nokogiri::HTML(open("https://www.beeradvocate.com/lists/top/"))
+        
+        beers = doc.css(".hr_bottom_light").css("a").css("b")
+        beers.each do |b|
+            name = b.text
+            BeerReviews::Beers.new(name)
         end
-    end
-
+    end    
 end
 
 
