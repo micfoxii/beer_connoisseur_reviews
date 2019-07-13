@@ -5,7 +5,7 @@ require 'pry'
 require_relative "./beer_reviews/version"
 require_relative "./beer_reviews/cli"
 require_relative "./beer_reviews/beers"
-require_relative "./beer_reviews/details"
+require_relative "./beer_reviews/scraper"
 
 
 

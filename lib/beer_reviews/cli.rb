@@ -1,6 +1,7 @@
 class BeerReviews::CLI
     def call
-        get_beer_name_brewery_type
+        BeerReviews::Scraper.scrape_beers
+       get_beer_name_brewery_type
         list_beer_name_brewery_type
         get_user_beer_selection
     end
@@ -26,7 +27,7 @@ class BeerReviews::CLI
                 selected_beer = @beers[input.to_i-1]
                 puts " #{selected_beer.name} - #{selected_beer.brewery} - #{selected_beer.type}"
             elsif input == "list"
-                list_beer_name_brewery_type
+               list_beer_name_brewery_type
             elsif input.strip.downcase == "exit"
                  goodbye
             else
