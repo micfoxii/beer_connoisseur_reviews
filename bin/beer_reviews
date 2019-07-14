@@ -2,5 +2,5 @@
 
 require_relative "../lib/beer_reviews"
 
-# BeerReviews::CLI.new.call
-BeerReviews::Scraper.new
+BeerReviews::CLI.new.call
+# BeerReviews::Scraper.new

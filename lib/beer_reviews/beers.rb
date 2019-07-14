@@ -1,17 +1,27 @@
 class BeerReviews::Beers 
-    attr_accessor :name, :style, :brewery
+    attr_accessor :name, :style, :brewery, :url
     
     @@all = []
 
-    def initialize(name=nil, style=nil, brewery=nil)
+    def self.new_from_index_page(b)
+        self.new(
+            b.css("a b").text,
+            b.css("span a")[0].text,
+            b.css("span a")[1].text,
+            "https://www.beeradvocate.com/lists/top/#{b.css("a").attribute("href").value}"
+        )
+    end
+
+    def initialize(name=nil, style=nil, brewery=nil, url=nil)
         @name = name
-        # @style = style
-        # @brewery = brewery
+        @brewery = brewery
+        @style = style
+        @url = url
         @@all << self
     end   
     
     def self.all
-        BeerReviews::Scraper.scrape_beers if @@all.empty?
         @@all
     end   
+
 end

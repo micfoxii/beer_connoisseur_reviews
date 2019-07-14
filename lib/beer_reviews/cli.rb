@@ -1,24 +1,26 @@
 class BeerReviews::CLI
+    attr_accessor :name, :style, :brewery
     def call
+
+        BeerReviews::Scraper.new.make_beers
         puts ""
         puts "Retrieving beer list..."
         puts ""
+        start
+
+    end
         
-        get_beers
-       
-        puts "Are you ready to find your new favorite beer?"
+    def start
+        puts ""
+        puts "Select a beer to see more details."
+        input = gets.strip.to_i
         
         list_beers
         get_user_beer_selection
     end
 
-    def get_beers
-        @beers = BeerReviews::Beers.all
-    end
-
-    def list_beers
-        puts "Select a beer to see more details."
-        @beers.each.with_index(1) do |beer, index|
+    def list_beers(beer)
+        BeerReviews::Beers.each.with_index(1) do |beer, index|
             puts "#{index}. #{beer.name}"
         end
     end
