@@ -7,7 +7,7 @@ class BeerReviews::Beers
         self.new(
             b.css("a b").text,
             b.css("span a:nth-child(2)").text,
-            b.css("span a")[1].text,
+            # b.css("span a")[1].text,
             "https://www.beeradvocate.com/lists/top/#{b.css("a").map {|anchor| anchor["href"]}}"
         )
     end

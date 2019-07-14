@@ -13,9 +13,9 @@ class BeerReviews::CLI
     def start
         puts ""
         puts "Select a beer to see more details."
-        input = gets.strip.to_i
-        
         list_beers
+        
+        input = gets.strip.to_i
         get_user_beer_selection
     end
 
@@ -26,8 +26,8 @@ class BeerReviews::CLI
             input = gets.strip.downcase
 
             if input.to_i > 0 && input.to_i < @beers.length + 1
-                selected_beer = @beers[input.to_i-1]
-                puts " #{beers.name} - #{beers.brewery} - #{beers.type}"
+                #selected_beer = @beers[input.to_i-1] to replace with list_beer_details
+                puts " #{beer.name} - #{beer.brewery} - #{beer.type}"
             elsif input == "list"
                list_beer_beers
             elsif input.strip.downcase == "exit"
@@ -39,9 +39,9 @@ class BeerReviews::CLI
     end
 
     
-    def list_beers(beer)
-        BeerReviews::Beers.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beers.name}" # to add - #{beers.style} - #{beers.brewery}
+    def list_beers
+        BeerReviews::Beers.all.each.with_index(1) do |beer, index|
+            puts "#{index}. #{beer.name}" # to add - #{beer.style} - #{beer.brewery}
         end
     end
 
