@@ -41,7 +41,7 @@ class BeerReviews::CLI
     
     def list_beers
         BeerReviews::Beers.all.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beer.name}" # to add - #{beer.style} - #{beer.brewery}
+            puts "#{index}. #{beer.name} - #{beer.style}" # to add  - #{beer.brewery}
         end
     end
 
