@@ -1,16 +1,13 @@
 class BeerReviews::CLI
     attr_accessor :name, :style, :brewery
-    def call
-
-        BeerReviews::Scraper.new.make_beers
-        puts ""
-        puts "Retrieving beer list..."
-        puts ""
+     def call
+        loading
+        BeerReviews::Scraper.new.scrape_beers
         start
-
     end
         
     def start
+
         puts ""
         puts "Select a beer to see more details."
         list_beers
@@ -41,7 +38,7 @@ class BeerReviews::CLI
     
     def list_beers
         BeerReviews::Beers.all.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beer.name} - #{beer.style}" # to add  - #{beer.brewery}
+            puts "#{index}. #{beer.name} - #{beer.url} - #{beer.style}" # to add  
         end
     end
 
@@ -57,6 +54,23 @@ class BeerReviews::CLI
 
     def goodbye
         puts "See you next time and remember to drink responsibly!"
+    end
+
+    def loading 
+        spinner = Enumerator.new do |e|
+            loop do
+                e.yield '|'
+                e.yield '/'
+                e.yield '-'
+                e.yield '\\'
+            end
+        end
+
+        1.upto(100) do |i|
+            progress = "=" * (i/5) unless i < 5
+            printf("\rRetrieving Beer List: [%-20s] %d%% %s", progress, i , spinner.next)
+            sleep(0.1)
+        end
     end
 
 end
