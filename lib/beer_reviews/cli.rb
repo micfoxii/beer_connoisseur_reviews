@@ -19,12 +19,6 @@ class BeerReviews::CLI
         get_user_beer_selection
     end
 
-    def list_beers(beer)
-        BeerReviews::Beers.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beer.name}"
-        end
-    end
-
     def get_user_beer_selection
         input = nil
         while input != "exit"
@@ -33,9 +27,9 @@ class BeerReviews::CLI
 
             if input.to_i > 0 && input.to_i < @beers.length + 1
                 selected_beer = @beers[input.to_i-1]
-                puts " #{selected_beer.name} - #{selected_beer.brewery} - #{selected_beer.type}"
+                puts " #{beers.name} - #{beers.brewery} - #{beers.type}"
             elsif input == "list"
-               list_beer_name_brewery_type
+               list_beer_beers
             elsif input.strip.downcase == "exit"
                  goodbye
             else
@@ -43,6 +37,23 @@ class BeerReviews::CLI
             end
         end
     end
+
+    
+    def list_beers(beer)
+        BeerReviews::Beers.each.with_index(1) do |beer, index|
+            puts "#{index}. #{beers.name}" # to add - #{beers.style} - #{beers.brewery}
+        end
+    end
+
+    # def list_beer_details(details)
+    #     puts "#{beers.name} - #{beers.style}"
+    #     puts "#{beers.brewery} - #{details.state}, #{details.country}"
+    #     puts "#{details.abv}"
+    #     puts "Beer Advocate Score: #{details.score}/5"
+    #     puts "Availability: #{details.availability}"
+    #     puts ""
+    #     puts "#{details.description}" 
+    # end
 
     def goodbye
         puts "See you next time and remember to drink responsibly!"

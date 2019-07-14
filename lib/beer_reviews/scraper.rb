@@ -14,13 +14,6 @@ class BeerReviews::Scraper
         end
     end
 end
-        
-        # beers.css("td.hr_bottom_light a b").each do |beer|
-
-        #     name = beer.text
-        #     BeerReviews::Beers.new(name)
-        # end  
-
 
 
         
