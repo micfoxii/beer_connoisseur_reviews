@@ -1,7 +1,13 @@
 class BeerReviews::CLI
     def call
-        puts "Are you ready to find your new favorite beer?"
+        puts ""
+        puts "Retrieving beer list..."
+        puts ""
+        
         get_beers
+       
+        puts "Are you ready to find your new favorite beer?"
+        
         list_beers
         get_user_beer_selection
     end
