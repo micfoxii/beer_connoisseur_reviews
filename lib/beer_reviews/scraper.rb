@@ -1,16 +1,19 @@
 class BeerReviews::Scraper
 
-    def get_page
-        Nokogiri::HTML(open("https://www.beeradvocate.com/lists/top/"))
-    end
-
     def scrape_beers
-        klass = get_page.search("td.hr_bottom_light")
+        doc = Nokogiri::HTML(open("https://www.beeradvocate.com/lists/top/"))
+        klass = doc.search("td.hr_bottom_light")
         array_name_link = klass.css("a:nth-child(1)")
 
         array_name_link.map do |link|
             BeerReviews::Beers.new(link.text, link.attributes["href"].value)
         end
+    end
+
+    def scrape_details(beers)
+        doc = Nokogiri::HTM(open(beers.url))
+        binding.pry
+        details = doc.css("")
     end
 
     # def make_beers

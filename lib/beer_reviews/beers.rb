@@ -9,6 +9,7 @@ class BeerReviews::Beers
         # @brewery = brewery
         # @style = style
         @url = "https://www.beeradvocate.com/lists/top/" + url
+        @details = []
         @@all << self
     end   
 
@@ -24,4 +25,36 @@ class BeerReviews::Beers
     def self.all
         @@all
     end   
+
+    def self.find(id)
+        self.all[id-1]
+    end
+
+    def state
+        @state ||= doc.css("div.break a")[2].text
+    end
+
+    def country
+        @country ||= doc.css("div.break a")[3].text
+    end
+
+    # def abv
+
+    # end
+
+    def score
+        @score ||= doc.css("span.ba-ravg").text       
+    end
+
+    # def availability
+
+    # end
+
+    # def description
+
+    # end
+
+    def doc 
+        @doc ||= Nokogiri::HTML(open(self.url))
+    end
 end
