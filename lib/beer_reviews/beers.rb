@@ -1,5 +1,5 @@
 class BeerReviews::Beers 
-    attr_accessor :name, :style, :brewery, :url
+    attr_accessor :name, :url, :style, :brewery, :state, :country, :score #to add : 
     attr_reader :details
     
     @@all = []
@@ -29,6 +29,14 @@ class BeerReviews::Beers
     def self.find(id)
         self.all[id-1]
     end
+
+    def brewery
+        @brewery ||= doc.css("div.break a").first.text
+    end
+
+    # def style
+    #     @style ||= doc.css("div.break a b").last.text
+    # end
 
     def state
         @state ||= doc.css("div.break a")[2].text

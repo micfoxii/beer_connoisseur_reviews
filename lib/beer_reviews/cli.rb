@@ -51,8 +51,8 @@ class BeerReviews::CLI
     end
 
     def list_beer_details(beer)
-        puts "#{beer.name}" # to add - #{beer.style}
-        puts "#{beer.state}, #{beer.country}" # to add #{beer.brewery} - 
+        puts "#{beer.name} - #{beer.style}" # to add
+        puts "#{beer.brewery} - #{beer.state}, #{beer.country}" # to add 
         #     puts "#{details.abv}"
         puts "Beer Advocate Score: #{beer.score}/5"
         #     puts "Availability: #{details.availability}"
