@@ -1,17 +1,26 @@
 class BeerReviews::Beers 
-    attr_accessor :name, :url, :style, :brewery, :state, :country, :score #to add : 
+    attr_accessor :name, :url, :brewery, :style, :state, :country, :score #to add : 
     attr_reader :details
     
     @@all = []
 
-    def initialize(name=nil, url=nil ) #would like to add brewery and style
+    def initialize(name=nil, url=nil, brewery=nil, style=nil )
         @name = name
-        # @brewery = brewery
-        # @style = style
         @url = "https://www.beeradvocate.com/lists/top/" + url
-        @details = []
+        @brewery = brewery
+        @style = style
+        # details = []
         @@all << self
     end   
+
+    def new_from_list(b)
+        self.new(
+            b.css("//td/a").text, #name    
+            b.css("//td/a/@href").text, #url
+            b.css("//td/span/a:nth-child(2)").text, # brewery          
+            b.css("//td/span/a:nth-child(4)").text # style 
+        )
+    end
 
     # def self.new_from_index_page(b)
     #     self.new(

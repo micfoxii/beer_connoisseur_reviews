@@ -1,6 +1,7 @@
 class BeerReviews::CLI
     attr_accessor :name, :style, :brewery
-     def call
+    
+    def call
         loading
         BeerReviews::Scraper.new.scrape_beers
         start
@@ -46,7 +47,7 @@ class BeerReviews::CLI
     
     def list_beers
         BeerReviews::Beers.all.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beer.name}" # to add  - #{beer.brewery} - #{beer.style}
+            puts "#{index}. #{beer.name}- #{beer.brewery}" # to add   - #{beer.style}
         end
     end
 
