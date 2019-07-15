@@ -10,11 +10,14 @@ class BeerReviews::Scraper
         end
     end
 
-    def scrape_details(beers)
-        doc = Nokogiri::HTM(open(beers.url))
-        binding.pry
-        details = doc.css("")
-    end
+    # def scrape_details(beers)
+    #     doc = Nokogiri::HTM(open(beers.url))
+    #     klass = doc.search("div.break")
+    #     details = doc.css("")
+    #     array
+    #     binding.pry
+        
+    # end
 
     # def make_beers
     #     scrape_beers.map do |b|
