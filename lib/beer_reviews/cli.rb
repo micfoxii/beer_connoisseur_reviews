@@ -46,7 +46,8 @@ class BeerReviews::CLI
     def list_beers(from_number)
         puts " Beers #{from_number} - #{from_number+49} "
         BeerReviews::Beers.all[from_number-1, 50].each.with_index(from_number) do |beer, index|
-            puts "#{index}. #{beer.name} - #{beer.brewery} - #{beer.style}"  
+            puts "#{index}. #{beer.name} - #{beer.style}"
+            puts "     #{beer.brewery}"
         end
     end
 
