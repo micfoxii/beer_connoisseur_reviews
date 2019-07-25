@@ -12,7 +12,7 @@ class BeerReviews::CLI
 
         list_beers
         user_selects_beer
-        choose_beer_selection
+        menu_or_exit
 
     end 
 
@@ -26,17 +26,26 @@ class BeerReviews::CLI
     end
 
     def user_selects_beer
-        puts "\nPlease enter the number of the beer you would like to learn more about?"
+
+        puts "\nPlease enter the number of the beer you would like to learn more about!"
         puts ""
+        
         input = gets.strip
 
-        beer = BeerReviews::Beers.find(input.to_i)
-
-        list_beer_details(beer)
+        if input.to_i.between?(1,25)
+            beer = BeerReviews::Beers.find(input.to_i)
+            list_beer_details(beer)
+        else
+            puts "\nPlease select a valid number from list!"
+            puts ""
+            sleep(3)
+            list_beers
+            user_selects_beer
+        end
     end
 
-    def choose_beer_selection
-        puts "\nWould you like to learn about another beer? Type list to return to list, or exit to leave."
+    def menu_or_exit
+        puts "\nWould you like to learn about another beer? Please type list to return to list, or exit to leave."
         input = gets.strip.downcase
 
         if input == "list"
@@ -44,18 +53,20 @@ class BeerReviews::CLI
         elsif input.strip.downcase == "exit"
             goodbye
         else
-            puts "\nSorry, I do not understand. Please type list to return to beer list, or type exit to leave."
-            choose_beer_selection
+            puts "\nSorry, I do not understand."
+            menu_or_exit
         end
     end
 
     def list_beer_details(beer)
+        
         puts "\n#{beer.name} - #{beer.style}" # to add
         puts "#{beer.brewery}" # to add  - #{beer.state}, #{beer.country}
         # puts "#{beer.abv}"
         # #     puts "Beer Advocate Score: #{beer.score}/5"
         # #     puts "Availability: #{details.availability}"
         # #     puts ""
+        BeerReviews::Scraper.scrape_beer_details(beer)
         puts "NOTES: #{beer.description}" 
     end
 
