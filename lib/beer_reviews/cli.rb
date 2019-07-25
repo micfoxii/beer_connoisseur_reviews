@@ -3,27 +3,21 @@ class BeerReviews::CLI
     
     def call
         #loading
-        # BeerReviews::Scraper.new.make_beers
-        BeerReviews::Scraper.new.scrape_beers #FOR ORGINAL PART LISTING BEERS
+        BeerReviews::Scraper.scrape_beers #FOR ORGINAL PART LISTING BEERS
+        # BeerReviews::Scraper.new.scrape_beer_details
         start
     end
         
     def start
 
-        list_beers(1)
-        
-        puts ""
-        puts "Which ranked beers would you like to see? 1-50, 51-100, 101-150, 151-200, 201-250?"
-        input = gets.strip.to_i
-
-        list_beers(input)
-        
+        list_beers
+         
         puts "Please enter the number of the beer you would like to learn more about?"
         input = gets.strip
         
         beer = BeerReviews::Beers.find(input.to_i)
 
-        # list_beer_details(beer)
+        list_beer_details(beer)
 
         puts "Would you like to learn about another beer? Type list to return to list, or exit to leave."
         choose_beer_selection
@@ -43,22 +37,23 @@ class BeerReviews::CLI
     end
 
     
-    def list_beers(from_number)
-        puts " Beers #{from_number} - #{from_number+49} "
-        BeerReviews::Beers.all[from_number-1, 50].each.with_index(from_number) do |beer, index|
-            puts "#{index}. #{beer.name} - #{beer.style}"
+    def list_beers
+        puts " Beer Advocate's Top 25 Beers "
+        BeerReviews::Beers.all.each.with_index(1) do |beer, index|
+            puts "#{index}. #{beer.name} - #{beer.style} - abv #{beer.abv}"
             puts "     #{beer.brewery}"
+            puts "     #{beer.url}"
         end
     end
 
     def list_beer_details(beer)
         puts "#{beer.name} - #{beer.style}" # to add
-        puts "#{beer.brewery} - #{beer.state}, #{beer.country}" # to add 
-        #     puts "#{details.abv}"
-        #     puts "Beer Advocate Score: #{beer.score}/5"
-        #     puts "Availability: #{details.availability}"
-        #     puts ""
-        #     puts "#{details.description}" 
+        puts "#{beer.brewery}" # to add  - #{beer.state}, #{beer.country}
+        # puts "#{beer.abv}"
+        # #     puts "Beer Advocate Score: #{beer.score}/5"
+        # #     puts "Availability: #{details.availability}"
+        # #     puts ""
+        puts "NOTES: #{beer.description}" 
     end
 
     def goodbye
