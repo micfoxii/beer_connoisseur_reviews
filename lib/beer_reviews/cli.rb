@@ -11,40 +11,41 @@ class BeerReviews::CLI
     def start
 
         list_beers
-         
-        puts "\nPlease enter the number of the beer you would like to learn more about?"
-        puts ""
-        input = gets.strip
-        
-        beer = BeerReviews::Beers.find(input.to_i)
-
-        list_beer_details(beer)
-
-        puts "\nWould you like to learn about another beer? Type list to return to list, or exit to leave."
+        user_selects_beer
         choose_beer_selection
+
     end 
 
-    def choose_beer_selection
-        
-            input = gets.strip.downcase
-
-            if input == "list"
-                start
-            elsif input.strip.downcase == "exit"
-                goodbye
-            else
-                puts "Sorry, I do not understand. Please type list to return to beer list, or type exit to leave."
-                choose_beer_selection
-            end
-    end
-
-    
     def list_beers
         puts " Beer Advocate's Top 25 Beers "
         BeerReviews::Beers.all.each.with_index(1) do |beer, index|
             puts "#{index}. #{beer.name} - #{beer.style} - abv #{beer.abv}"
             puts "     #{beer.brewery}"
             puts "     #{beer.url}"
+        end
+    end
+
+    def user_selects_beer
+        puts "\nPlease enter the number of the beer you would like to learn more about?"
+        puts ""
+        input = gets.strip
+
+        beer = BeerReviews::Beers.find(input.to_i)
+
+        list_beer_details(beer)
+    end
+
+    def choose_beer_selection
+        puts "\nWould you like to learn about another beer? Type list to return to list, or exit to leave."
+        input = gets.strip.downcase
+
+        if input == "list"
+            start
+        elsif input.strip.downcase == "exit"
+            goodbye
+        else
+            puts "\nSorry, I do not understand. Please type list to return to beer list, or type exit to leave."
+            choose_beer_selection
         end
     end
 
