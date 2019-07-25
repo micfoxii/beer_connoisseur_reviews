@@ -12,16 +12,17 @@ class BeerReviews::CLI
 
         list_beers
          
-        puts "Please enter the number of the beer you would like to learn more about?"
+        puts "\nPlease enter the number of the beer you would like to learn more about?"
+        puts ""
         input = gets.strip
         
         beer = BeerReviews::Beers.find(input.to_i)
 
         list_beer_details(beer)
 
-        puts "Would you like to learn about another beer? Type list to return to list, or exit to leave."
+        puts "\nWould you like to learn about another beer? Type list to return to list, or exit to leave."
         choose_beer_selection
-    end
+    end 
 
     def choose_beer_selection
         
@@ -48,7 +49,7 @@ class BeerReviews::CLI
     end
 
     def list_beer_details(beer)
-        puts "#{beer.name} - #{beer.style}" # to add
+        puts "\n#{beer.name} - #{beer.style}" # to add
         puts "#{beer.brewery}" # to add  - #{beer.state}, #{beer.country}
         # puts "#{beer.abv}"
         # #     puts "Beer Advocate Score: #{beer.score}/5"
@@ -58,7 +59,7 @@ class BeerReviews::CLI
     end
 
     def goodbye
-        puts "See you next time and remember to drink responsibly!"
+        puts "\nSee you next time and remember to drink responsibly!"
     end
 
     def loading 
