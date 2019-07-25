@@ -12,6 +12,7 @@ class BeerReviews::Scraper
             # abv = beer_data.css("/td/span/a:nth-child(5)") #abv
             )
         end
+        scrape_beer_details
     end
       
     
