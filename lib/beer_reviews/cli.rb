@@ -33,6 +33,7 @@ class BeerReviews::CLI
                 goodbye
             else
                 puts "Sorry, I do not understand. Please type list to return to beer list, or type exit to leave."
+                choose_beer_selection
             end
     end
 

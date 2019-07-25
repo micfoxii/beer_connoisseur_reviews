@@ -12,16 +12,18 @@ class BeerReviews::Scraper
             # abv = beer_data.css("/td/span/a:nth-child(5)") #abv
             )
         end
-       
-        self.scrape_beer_details
     end
       
     
-    def self.scrape_beer_details
-        BeerReviews::Beers.all.each do |beers|
-            binding.pry
-            doc = Nokogiri::HTML(open(beers.url))
-            beers.description << doc.css("div#info_box").text.split("\n")[-1]
+    def self.scrape_beer_details(beer)
+        url = "#{beer.url}"
+        doc = Nokogiri::HTML(open(url))
+        
+        beer_details = doc.css("div#info_box")
+        beer_details.each do |deets|
+            BeerReviews::Details.new(
+            description = deets.text.split("\n")[-1]
+            )
         end
     end
 
