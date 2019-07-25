@@ -17,8 +17,8 @@ class BeerReviews::Scraper
     
     def self.scrape_beer_details(beer)
         doc = Nokogiri::HTML(open(beer.url))
-        notes = doc.css("div#info_box")
-        beer.description << notes.text.split("\n")[-1]
+        notes = doc.css("div#info_box").text.split("\n")[-1]
+        beer.description << notes
     end
 end     
 

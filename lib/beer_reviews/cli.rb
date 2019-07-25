@@ -4,7 +4,6 @@ class BeerReviews::CLI
     def call
         #loading
         BeerReviews::Scraper.scrape_beers #FOR ORGINAL PART LISTING BEERS
-        # BeerReviews::Scraper.new.scrape_beer_details
         start
     end
         
@@ -19,9 +18,8 @@ class BeerReviews::CLI
     def list_beers
         puts " Beer Advocate's Top 25 Beers "
         BeerReviews::Beers.all.each.with_index(1) do |beer, index|
-            puts "#{index}. #{beer.name} - #{beer.style} - abv #{beer.abv}"
+            puts "#{index}. #{beer.name} - #{beer.style}"
             puts "     #{beer.brewery}"
-            puts "     #{beer.url}"
         end
     end
 
@@ -59,15 +57,12 @@ class BeerReviews::CLI
     end
 
     def list_beer_details(beer)
-        
-        puts "\n#{beer.name} - #{beer.style}" # to add
-        puts "#{beer.brewery}" # to add  - #{beer.state}, #{beer.country}
-        # puts "#{beer.abv}"
-        # #     puts "Beer Advocate Score: #{beer.score}/5"
-        # #     puts "Availability: #{details.availability}"
-        # #     puts ""
         BeerReviews::Scraper.scrape_beer_details(beer)
-        puts "NOTES: #{beer.description}" 
+        puts "\n#{beer.name} - #{beer.style}"
+        puts "#{beer.brewery}" 
+        puts "NOTES: #{beer.description}" #blocking url scrape, sending back to top 250 list
+        puts "To read more reviews, please follow link below:"
+        puts "   #{beer.url}" #starts opening beer link, but then redirects to top 250 list
     end
 
     def goodbye
